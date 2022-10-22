@@ -10,58 +10,100 @@ const Home: NextPage = () => {
         <meta name="description" content="Qoohoo Assignment" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav>
+      <nav className='border-b-2'>
         <div className="grid grid-cols-12">
-          <a href="#" className="col-span-1">
-            Options
-            {/* <Image src="/logo.png" alt="Qoohoo" width={100} height={100} /> */}
+          <a href="#" className="col-span-1 py-7 flex justify-center items-center border-r">
+            <Image src="/icons/Options.svg" alt="Options" width={28.5} height={9.5}/>
           </a>
-          <a href="#" className="col-span-1">
-            Logo
+          <a href="#" className="col-span-1 py-7 flex justify-center items-center border-x">
+            <Image src="/icons/Logo.svg" alt="Logo" width={31} height={23.5}/>
           </a>
-          <ul className="flex gap-2 flex-row col-span-5">
+          <ul className="flex justify-start items-center gap-2 flex-row col-span-3 border-x px-4">
             <li>
-              <a href="#">New</a>
+              <a href="#" className='p-3'>New</a>
             </li>
             <li>
-              <a href="#">Sale</a>
+              <a href="#" className='p-3'>Sale</a>
             </li>
             <li>
-              <a href="#">Men</a>
+              <a href="#" className='p-3'>Men</a>
             </li>
             <li>
-              <a href="#">Women</a>
+              <a href="#" className='p-3'>Women</a>
             </li>
           </ul>
           {/* Search */}
-          <div className="col-span-3 flex flex-row gap-2">
+          <div className="col-span-4 gap-2 p-3 flex justify-center items-center border-x">
             {/* Heart Logo */}
-            <a href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 7a5 5 0 00-7.78-2.24l-.22.2-.22-.2A5 5 0 003 7c0 3.86 5.13 9 9 9 3.86 0 9-5.13 9-9zm-9 7.2a1 1 0 01-1.4 0l-.6-.6a1 1 0 010-1.4l.6-.6a1 1 0 011.4 0l.6.6a1 1 0 010 1.4l-.6.6z"
-                />
-              </svg>
-            </a>
+            <a href="#"><Image src="/icons/Heart.svg" alt="Heart" width={28.5} height={23.5}/></a>
             <span>Search</span>
             </div>
-          <div className='col-span-2 flex gap-3'>
-            <a href="#">Cart</a>
-            <a href="#">Profile</a>
+          <div className='col-span-3 flex gap-5 justify-center items-center border-l'>
+            <a href="#" className='p-3'><Image src="/icons/Cart.svg" alt="Cart" width={16} height={18}/></a>
+            <a href="#" className='p-3'><Image src="/icons/Profile.svg" alt="Profile" width={15.5} height={17.6}/></a>
           </div>
         </div>
       </nav>
-      <main>
+      <main >
+        <div className="grid grid-cols-12">
+          <div className='col-span-9 border-r'>
+            <div className=" relative ml-60 mt-9">
+              <div className="ml-52 relative">
+                {/* blobs */}
+                <div className="absolute top-16 -left-16 pl-2">
+                  <Image src="/images/BlobLight.svg" alt="Blob1" height={511} width={500.1}/>
+                </div>
+                <div className="absolute top-16 -left-16 pt-8">
+                  <Image src="/images/BlobDark.svg" alt="Blob1" height={470} width={500.6}/>
+                </div>
+
+                {/* Main Image */}
+                <div className='z-10'>
+                  <Image
+                    src="/images/Model.png"
+                    alt="Model Image"
+                    height={665.7}
+                    width={324.1}
+                  />
+                </div>
+              </div>
+              {/* Text + Button */}
+              <div className='absolute top-72 left-0 flex gap-14 justify-center items-center'>
+                {/* Text */}
+                <span className='text-6xl text-black font-bold'>The Best <br/>and the.</span>
+                {/* Button */}
+                <Image className='cursor-pointer' src="/icons/Add.svg" alt="Add" width={61.5} height={61}/>
+              </div>
+              
+              {/* Options */}
+              <div className='absolute top-36 right-44 flex flex-col gap-y-10'>
+                <div className='rounded-2xl shadow-lg bg-white flex gap-2 hover:bg-gray-50 cursor-pointer'>
+                  <div className='p-3 flex flex-col justify-around'>
+                    <p>Product A</p>
+                    <span>$87</span>
+                  </div>
+                  {/* Block */}
+                  <div className='bg-gray-200 opacity-50 h-32 w-28 rounded-r-2xl'></div>
+                </div>
+                <div className='rounded-2xl shadow-lg bg-white flex gap-2 hover:bg-gray-50 cursor-pointer'>
+                  <div className='p-3 flex flex-col justify-around'>
+                    <p>Product B</p>
+                    <span>$87</span>
+                  </div>
+                  {/* Block */}
+                  <div className='bg-gray-200 opacity-50 h-32 w-28 rounded-r-2xl'></div>
+                </div>
+              </div>
+
+              {/* Next button */}
+              <div className='absolute top-64 right-0 flex gap-10 justify-center items-center transform translate-x-1/2 cursor-pointer hover:scale-105'>
+                <Image src="/icons/Next.svg" alt="Next" width={61.5} height={61}/>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-3 border-l">
+          </div>
+        </div>
       </main>
     </div>
   )
