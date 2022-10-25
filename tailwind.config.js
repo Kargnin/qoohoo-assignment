@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme")
+
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -8,6 +10,9 @@ module.exports = {
     extend: {
       colors: {
         'accent-1': '#333',
+      },
+      fontFamily: {
+        "Oswald": ["Oswald", ...defaultTheme.fontFamily.sans],
       },
     },
   },
