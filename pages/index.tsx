@@ -5,11 +5,18 @@ import Image from 'next/image'
 
 import {motion,LayoutGroup} from 'framer-motion';
 
+const variantsModelImage = {
+  slideIn: { x: [200,0], opacity: [0,1], transition: {duration: 0.6} },
+}
+
 
 const Home: NextPage = () => {
   const [expand, setExpand] = useState(false);
+  const [size, setSize] = useState('S');
+  const [imageSelected, setImageSelected] = useState(-1);
+
   return (
-    <div>
+    <div className='max-h-screen overflow-hidden'>
       <Head>
         <title>Qoohoo Assignment</title>
         <meta name="description" content="Qoohoo Assignment" />
@@ -17,24 +24,24 @@ const Home: NextPage = () => {
       </Head>
       <nav className='border-b-2'>
         <div className="grid grid-cols-12">
-          <a href="#" className="col-span-1 py-7 flex justify-center items-center border-r">
+          <a href="#" className="col-span-1 py-5 flex justify-center items-center border-r">
             <Image src="/icons/Options.svg" alt="Options" width={28.5} height={9.5}/>
           </a>
-          <a href="#" className="col-span-1 py-7 flex justify-center items-center border-x">
+          <a href="#" className="col-span-1 py-5 flex justify-center items-center border-x">
             <Image src="/icons/Logo.svg" alt="Logo" width={31} height={23.5}/>
           </a>
           <ul className="flex justify-start items-center gap-2 flex-row col-span-3 border-x px-4">
             <li>
-              <a href="#" className='p-3'>New</a>
+              <a href="#" className='p-3 font-semibold'>New</a>
             </li>
             <li>
-              <a href="#" className='p-3'>Sale</a>
+              <a href="#" className='p-3 font-semibold'>Sale</a>
             </li>
             <li>
-              <a href="#" className='p-3'>Men</a>
+              <a href="#" className='p-3 font-semibold'>Men</a>
             </li>
             <li>
-              <a href="#" className='p-3'>Women</a>
+              <a href="#" className='p-3 font-semibold'>Women</a>
             </li>
           </ul>
           {/* Search */}
@@ -53,30 +60,30 @@ const Home: NextPage = () => {
         <motion.div className="grid grid-cols-12 relative">
           <LayoutGroup>
             <motion.div layout className={expand?'col-span-12 min-h-screen' :'col-span-9 border-r min-h-screen'}>
-              <div className="ml-60 mt-9 relative">
+              <div className="ml-72 mt-9 relative">
                 <div className={expand? 'relative':"ml-52 relative"}>
                   {/* blobs */}
-                  <div className={expand?'absolute top-32 -right-8 pl-2 scale-125' :"absolute top-16 -left-16 pl-2"} >
+                  <div className={expand?'absolute top-32 right-1 pl-2 scale-125' :"absolute top-16 -left-16 pl-2"} >
                     <Image src="/images/BlobLight.svg" alt="Blob1" height={511} width={500.1}/>
                   </div>
-                  <div className={expand? 'absolute top-28 -right-8 pt-8 scale-125':"absolute top-16 -left-16 pt-8"} >
+                  <div className={expand? 'absolute top-28 right-1 pt-8 scale-125':"absolute top-16 -left-16 pt-8"} >
                     <Image src="/images/BlobDark.svg" alt="Blob1" height={470} width={500.6}/>
                   </div>
 
                   {/* Main Image */}
-                  <div className={expand? 'absolute right-20 top-0' : 'absolute left-0 top-0'}>
-                    <Image
+                  <motion.div key={imageSelected} className={expand? 'absolute right-44 -top-6' : 'absolute left-0 -top-6'} animate={imageSelected != -1 ? "slideIn" : ""} variants={variantsModelImage} >
+                    <Image 
                       src="/images/Model.png"
                       alt="Model Image"
-                      height={665.7}
-                      width={324.1}
+                      height={665.7*1.07}
+                      width={324.1*1.07}
                     />
-                  </div>
+                  </motion.div>
                 </div>
                 
                 
                 {/* Options */}
-                {!expand && <div className='absolute top-36 right-44 flex flex-col gap-y-10'>
+                {!expand && <div className='absolute top-36 right-36 flex flex-col gap-y-10'>
                   <div className='rounded-2xl shadow-lg bg-white flex gap-2 hover:bg-gray-50 cursor-pointer'>
                     <div className='p-3 flex flex-col justify-around'>
                       <p>Product A</p>
@@ -102,41 +109,65 @@ const Home: NextPage = () => {
                 </div>}
               </div>
             </motion.div>
-            <motion.div layout className={expand?"col-span-0 border-l" :"col-span-3 border-l"}>
+            <motion.div layout className={expand?"col-span-0 border-l" :" flex justify-center items-center col-span-3 border-l bg-gray-100"}>
             </motion.div>
           </LayoutGroup>
           {/* Text + Button */}
-          <motion.div layout="position" className={expand? 'absolute top-16 left-24 flex flex-col gap-4 justify-center items-start': 'absolute top-72 left-24 flex gap-14 justify-center items-start'}>
+          <motion.div layout="position" className={expand? 'absolute top-12 left-56 flex flex-col gap-4 justify-center items-start': 'absolute top-80 left-56 flex gap-14 justify-center items-center'}>
             {/* Text */}
-            <span className='text-6xl text-black font-bold'>The Best <br/>and the.</span>
+            <span className='text-6xl text-black font-bold w-80 leading-normal'>Tied Green V-Neck Shirt</span>
             {/* Button */}
             {!expand && <Image className='cursor-pointer' src="/icons/Add.svg" alt="Add" width={61.5} height={61} onClick={() => setExpand(expand=>!expand)} />}
             
             {/* Description */}
             {expand && 
-            <div className='text-lg flex flex-col gap-5'>
+            <motion.div className='text-lg flex flex-col gap-5'>
               <span className='text-5xl'>$67</span>
               <p className='pb-1 w-80 text-md'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nihil!</p>
               {/* Select size */}
               <div className='flex gap-3 flex-col'>
                 <span className='font-semibold text-md'>Select Size</span>
                 <ul className='flex gap-2'>
-                  <li className='h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg'>S</li>
-                  <li className='h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg'>M</li>
-                  <li className='h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg'>L</li>
+                  <li onClick={()=>setSize('S')} className={size ==='S'?'border-black h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg hover:bg-gray-200':'h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg hover:bg-gray-200'}>S</li>
+                  <li onClick={()=>setSize('M')} className={size ==='M'?'border-black h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg hover:bg-gray-200':'h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg hover:bg-gray-200'}>M</li>
+                  <li onClick={()=>setSize('L')} className={size ==='L'?'border-black h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg hover:bg-gray-200':'h-8 w-8 cursor-pointer rounded-full border-2 flex justify-center items-center text-lg hover:bg-gray-200'}>L</li>
                   <li className='pl-4 font-bold cursor-pointer text-gray-400 flex justify-center items-center text-lg'>SIZE GUIDE</li>
                 </ul>
               </div>
               {/* Carousal */}
               <ul className='flex gap-3 justify-center items-center'>
-                <li className='h-40 w-32 bg-gray-400'></li>
-                <li className='h-40 w-32 bg-gray-400'></li>
-                <li className='h-40 w-32 bg-gray-400'></li>
-                <li className='h-40 w-32 bg-gray-400'></li>
+                <li id='0' key={0} className='h-48 w-24 bg-gray-200 hover:bg-gray-300 relative cursor-pointer' onClick={()=>setImageSelected(0)}> 
+                  <Image 
+                    src="/images/Model.png"
+                    alt="Model Image"
+                    layout='fill'
+                  />
+                </li>
+                <li id='1' key={1} className='h-48 w-24 bg-gray-200 hover:bg-gray-300 relative cursor-pointer' onClick={()=>setImageSelected(1)}> 
+                  <Image 
+                    src="/images/Model.png"
+                    alt="Model Image"
+                    layout='fill'
+                  />
+                </li>
+                <li id='2' key={2} className='h-48 w-24 bg-gray-200 hover:bg-gray-300 relative cursor-pointer' onClick={()=>setImageSelected(2)}> 
+                  <Image 
+                    src="/images/Model.png"
+                    alt="Model Image"
+                    layout='fill'
+                  />
+                </li>
+                <li id='3' key={3} className='h-48 w-24 bg-gray-200 hover:bg-gray-300 relative cursor-pointer' onClick={()=>setImageSelected(3)}> 
+                  <Image 
+                    src="/images/Model.png"
+                    alt="Model Image"
+                    layout='fill'
+                  />
+                </li>
                 {/* Right Arrow */}
                 <svg className='cursor-pointer' width="30" height="30" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/></svg>
               </ul>
-            </div>
+            </motion.div>
             }
           </motion.div>
         </motion.div>
