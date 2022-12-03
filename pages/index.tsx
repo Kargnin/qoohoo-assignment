@@ -21,8 +21,13 @@ const Home: NextPage = () => {
     return (
       <div className='max-h-screen overflow-hidden'>
         <Head>
-          <title>Qoohoo Assignment</title>
-          <meta name="description" content="Qoohoo Assignment" />
+          <title>Internet For Everyone</title>
+          <meta name="description" content="T4SNE Assignment by 19EC10002
+19EC10005
+19EC10010
+19CS10020
+19EE10050
+19CS10039" />
           <link rel="icon" href="/favicon.ico" />
           
         </Head>
