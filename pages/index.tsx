@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const [size, setSize] = useState('S');
   const [imageSelected, setImageSelected] = useState(-1);
 
-  const [accessible, setAccessible] = useState(false);
+  const [accessible, setAccessible] = useState(true);
 
   if(!accessible)
     return (
